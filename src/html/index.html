@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Round-Robin Tournament Bracket</title>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+  <div class="tournament-bracket">
+    <h1>Round-Robin Tournament Bracket</h1>
+    <div class="settings">
+      <label for="num-rounds">Number of Rounds:</label>
+      <input type="number" id="num-rounds" min="1" value="5">
+      <button id="generate-bracket-btn">Generate Bracket</button>
+    </div>
+    <div class="participants">
+      <label for="participant-names">Enter Participant Names (separated by comma):</label>
+      <input type="text" id="participant-names">
+      <button id="start-tournament-btn">Start Tournament</button>
+    </div>
+    <div class="rounds-container" id="rounds-container">
+      <!-- The bracket will be dynamically generated here -->
+    </div>
+    <div class="overall-scores" id="overall-scores">
+      <!-- Overall scores will be displayed here -->
+    </div>
+  </div>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>
