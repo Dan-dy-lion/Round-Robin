@@ -107,3 +107,22 @@ function startTournament() {
 // Add event listener to the "Start Tournament" button
 const startTournamentButton = document.getElementById('start-tournament-btn');
 startTournamentButton.addEventListener('click', startTournament);
+
+// Mobile Landscape Notification
+window.addEventListener('DOMContentLoaded', () => {
+  const landscapeNotification = document.getElementById('landscape-notification');
+
+  function checkOrientation() {
+    if (window.innerWidth < window.innerHeight) {
+      landscapeNotification.style.display = 'block';
+    } else {
+      landscapeNotification.style.display = 'none';
+    }
+  }
+
+  window.addEventListener('orientationchange', checkOrientation);
+  window.addEventListener('resize', checkOrientation);
+
+  // Call the function initially to check the orientation on page load
+  checkOrientation();
+});
