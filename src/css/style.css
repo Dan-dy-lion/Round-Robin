@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arimo', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: #221f1f;
+  color: #EEEBDD;
 }
 
 .tournament-bracket {
   max-width: 600px;
   margin: 50px auto;
-  background-color: #fff;
+  background-color: #1B1717;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -17,6 +20,33 @@ body {
 h1 {
   text-align: center;
   margin-bottom: 20px;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-wrapper button {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  cursor: pointer;
+
+  border-style: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  color: #EEEBDD;
+  font-family: 'Arimo', sans-serif;
+  font-weight: 700;
+  background-color: #3CB371;
+}
+
+.button-wrapper button:hover {
+  box-shadow: 0 0 5px #3CB371;
 }
 
 .settings,
@@ -37,9 +67,9 @@ h1 {
 
 .match {
   padding: 5px 15px;
-  border: 1px solid #ccc;
+  border: 1px solid #221f1f;
   border-radius: 5px;
-  background-color: #f0f0f0;
+  background-color: #1B1717;
 }
 
 .match:not(:last-child) {
@@ -58,6 +88,41 @@ input[type="number"] {
   width: 40px;
   text-align: center;
   margin: 0 5px;
+  background-color: #1B1717;
+  color: #EEEBDD;
+  border: 1px solid #EEEBDD;
+  padding: 5px;
+}
+
+input[type="text"] {
+  text-align: center;
+  background-color: #1B1717;
+  color: #EEEBDD;
+  border: 1 px solid #EEEBDD;
+  padding: 5px;
+
+}
+
+input[type="text"]:hover,
+input[type="number"]:hover {
+  box-shadow: 0 0 5px #3CB371;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
 }
 
 .match.winner {
@@ -77,4 +142,30 @@ input[type="number"] {
 #generate-bracket-btn {
   opacity: 0%;
   display: hidden;
+}
+
+.winner { 
+  background-color: #A0C49D;
+ }
+.draw {
+   background-color: #FFD93D;
+   }
+.loss {
+   background-color: #CE1212;
+   }
+
+.plug {
+  text-decoration: none;
+  color: #EEEBDD;
+}
+
+.plug-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.plug:hover {
+  text-shadow: 0 0 5px #3CB371;
 }

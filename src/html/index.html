@@ -15,15 +15,23 @@
     <div class="participants">
       <label for="participant-names">Enter Participant Names (separated by comma):</label>
       <input type="text" id="participant-names">
-      <button id="start-tournament-btn">Start Tournament</button>
+      <div class="button-wrapper">
+        <button id="start-tournament-btn">Start Tournament</button>
+      </div>
     </div>
     <div class="rounds-container" id="rounds-container">
       <!-- The bracket will be dynamically generated here -->
     </div>
     <div class="overall-scores" id="overall-scores">
       <!-- Overall scores will be displayed here -->
+      <!-- Feature removed but code will break without it -->
     </div>
   </div>
+  <footer class="tournament-bracket">
+    <div class="plug-center">
+      <p>Made By <a class="plug" href="https://dan-dy-lion.github.io/Daniel/public/html/index.html">Daniel Isaac Polidano</a></p> 
+    </div>
+  </footer>
 
   <script src="../js/script.js"></script>
 </body>

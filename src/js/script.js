@@ -33,7 +33,7 @@ function displayBracket(bracket, participants) {
   const overallScoresContainer = document.getElementById('overall-scores');
   const participantScores = {};
 
-  // Initialize participant scores
+  // Initialize participant scores to 0 for all participants
   participants.forEach((participant) => {
     participantScores[participant] = 0;
   });
@@ -51,7 +51,7 @@ function displayBracket(bracket, participants) {
 
       const scoreElement = document.createElement('div');
       scoreElement.classList.add('match-score');
-      scoreElement.innerHTML = `<input type="number" class="score" min="0" max="100" value="0"> - <input type="number" class="score" min="0" max="100" value="0">`;
+      scoreElement.innerHTML = `<input type="number" class="score" value="0"> - <input type="number" class="score" value="0">`;
       matchElement.appendChild(scoreElement);
 
       // Event listener to update winners when scores change
@@ -67,63 +67,22 @@ function displayBracket(bracket, participants) {
 
     roundsContainer.appendChild(roundElement);
   });
+}
 
-  // Display initial overall scores
-  updateOverallScores();
+function updateMatchWinner(matchElement) {
+  const scoreElements = matchElement.querySelectorAll('.score');
 
-  function updateOverallScores() {
-    // Reset participant scores before recalculating
-    participants.forEach((participant) => {
-      participantScores[participant] = 0;
-    });
+  matchElement.classList.remove('winner', 'draw', 'loss');
 
-    // Calculate and update participant scores based on match scores
-    const matches = document.querySelectorAll('.match');
-    matches.forEach((matchElement) => {
-      const [score1, score2] = getMatchScores(matchElement);
-      const participant1 = matchElement.textContent.split(' vs ')[0].trim();
-      const participant2 = matchElement.textContent.split(' vs ')[1].trim();
-      if (score1 > score2) {
-        participantScores[participant1]++;
-      } else if (score1 < score2) {
-        participantScores[participant2]++;
-      }
-    });
+  const score1 = parseInt(scoreElements[0].value, 10);
+  const score2 = parseInt(scoreElements[1].value, 10);
 
-    // Update overall scores in the DOM
-    overallScoresContainer.innerHTML = '';
-    participants.forEach((participant) => {
-      const scoreElement = document.createElement('div');
-      scoreElement.classList.add('participant-score');
-      scoreElement.textContent = `${participant}: ${participantScores[participant]} points`;
-      overallScoresContainer.appendChild(scoreElement);
-    });
-  }
-
-  function getMatchScores(matchElement) {
-    const scores = matchElement.querySelectorAll('.score');
-    const score1 = parseInt(scores[0].value, 10);
-    const score2 = parseInt(scores[1].value, 10);
-    return [score1, score2];
-  }
-
-  function updateMatchWinner(matchElement) {
-    const [score1, score2] = getMatchScores(matchElement);
-    const scoreElements = matchElement.querySelectorAll('.score');
-
-    if (score1 > score2) {
-      matchElement.classList.add('winner');
-      scoreElements[0].classList.add('winner-score');
-      scoreElements[1].classList.remove('winner-score');
-    } else if (score1 < score2) {
-      matchElement.classList.remove('winner');
-      scoreElements[0].classList.remove('winner-score');
-      scoreElements[1].classList.add('winner-score');
-    } else {
-      matchElement.classList.remove('winner');
-      scoreElements[0].classList.remove('winner-score');
-      scoreElements[1].classList.remove('winner-score');
-    }
+  if (score1 > score2) {
+    matchElement.classList.add('winner');
+  } else if (score1 < score2) {
+    matchElement.classList.add('loss');
+  } else {
+    matchElement.classList.add('draw');
   }
 }
 
@@ -137,11 +96,12 @@ function startTournament() {
   roundsContainer.innerHTML = '';
   overallScoresContainer.innerHTML = '';
 
-  const participantNames = participantNamesInput.value.split(',').map(name => name.trim());
-  const numRounds = parseInt(numRoundsInput.value, 10);
+  participants.length = 0; // Clear existing participants array
+  participants.push(...participantNamesInput.value.split(',').map(name => name.trim()));
 
-  const bracket = generateRoundRobinBracket(participantNames, numRounds);
-  displayBracket(bracket, participantNames);
+  const numRounds = parseInt(numRoundsInput.value, 10);
+  const bracket = generateRoundRobinBracket(participants, numRounds);
+  displayBracket(bracket, participants);
 }
 
 // Add event listener to the "Start Tournament" button
